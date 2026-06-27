@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpringCloud 控制台</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f6f8;
+      --panel: #ffffff;
+      --line: #d8dee6;
+      --text: #17202a;
+      --muted: #687385;
+      --brand: #0f766e;
+      --brand-dark: #115e59;
+      --danger: #b42318;
+      --ok: #15803d;
+      --code: #101828;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .topbar {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .token-state {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #9ca3af;
+      flex: 0 0 auto;
+    }
+
+    .dot.active {
+      background: var(--ok);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    input,
+    select {
+      width: 100%;
+      height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 0 10px;
+      color: var(--text);
+      background: #fff;
+      font: inherit;
+    }
+
+    input:focus,
+    select:focus {
+      outline: 2px solid rgba(15, 118, 110, 0.18);
+      border-color: var(--brand);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .form-grid .wide {
+      grid-column: 1 / -1;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    button {
+      min-height: 36px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 0 12px;
+      background: var(--brand);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+    }
+
+    button.secondary {
+      background: #fff;
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    button.danger {
+      background: var(--danger);
+    }
+
+    button:hover {
+      background: var(--brand-dark);
+    }
+
+    button.secondary:hover {
+      background: #eef2f6;
+    }
+
+    button.danger:hover {
+      background: #931b12;
+    }
+
+    button:disabled {
+      cursor: wait;
+      opacity: 0.7;
+    }
+
+    .result {
+      min-height: 520px;
+      background: var(--code);
+      color: #d1fae5;
+      border-radius: 8px;
+      padding: 14px;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 13px;
+    }
+
+    .status-line {
+      min-height: 22px;
+      margin-bottom: 10px;
+      color: var(--muted);
+    }
+
+    .status-line.ok {
+      color: var(--ok);
+    }
+
+    .status-line.error {
+      color: var(--danger);
+    }
+
+    @media (max-width: 860px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <h1>SpringCloud 控制台</h1>
+      <div class="token-state">
+        <span id="tokenDot" class="dot"></span>
+        <span id="tokenText">未登录</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="stack">
+      <section>
+        <h2>连接</h2>
+        <div class="form-grid">
+          <div class="wide">
+            <label for="baseUrl">网关地址</label>
+            <input id="baseUrl" value="" autocomplete="off">
+          </div>
+        </div>
+        <div class="buttons">
+          <button type="button" class="secondary" data-action="health">健康检查</button>
+          <button type="button" class="secondary" data-action="clear">清空输出</button>
+        </div>
+      </section>
+
+      <section>
+        <h2>认证</h2>
+        <div class="form-grid">
+          <div>
+            <label for="username">用户名</label>
+            <input id="username" autocomplete="username">
+          </div>
+          <div>
+            <label for="password">密码</label>
+            <input id="password" type="password" autocomplete="current-password">
+          </div>
+          <div>
+            <label for="role">角色</label>
+            <select id="role">
+              <option value="USER">USER</option>
+              <option value="ADMIN">ADMIN</option>
+            </select>
+          </div>
+        </div>
+        <div class="buttons">
+          <button type="button" data-action="register">注册</button>
+          <button type="button" data-action="login">登录</button>
+          <button type="button" class="secondary" data-action="authMe">Token 信息</button>
+          <button type="button" class="danger" data-action="logout">退出</button>
+        </div>
+      </section>
+
+      <section>
+        <h2>业务</h2>
+        <div class="form-grid">
+          <div>
+            <label for="productCode">商品编码</label>
+            <input id="productCode" value="P001" autocomplete="off">
+          </div>
+          <div>
+            <label for="quantity">数量</label>
+            <input id="quantity" type="number" min="1" value="1">
+          </div>
+          <div class="wide">
+            <label for="amount">金额</label>
+            <input id="amount" type="number" min="0.01" step="0.01" value="9.90">
+          </div>
+        </div>
+        <div class="buttons">
+          <button type="button" class="secondary" data-action="userMe">用户资料</button>
+          <button type="button" class="secondary" data-action="stock">查库存</button>
+          <button type="button" data-action="createOrder">创建订单</button>
+          <button type="button" class="secondary" data-action="myOrders">我的订单</button>
+          <button type="button" class="secondary" data-action="messages">消息事件</button>
+        </div>
+      </section>
+    </div>
+
+    <section>
+      <h2>输出</h2>
+      <div id="status" class="status-line">等待操作</div>
+      <pre id="result" class="result">{}</pre>
+    </section>
+  </main>
+
+  <script>
+    const state = {
+      token: localStorage.getItem("springcloud-token") || "",
+      expiresAt: localStorage.getItem("springcloud-token-expires-at") || ""
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    const controls = {
+      baseUrl: $("baseUrl"),
+      username: $("username"),
+      password: $("password"),
+      role: $("role"),
+      productCode: $("productCode"),
+      quantity: $("quantity"),
+      amount: $("amount"),
+      status: $("status"),
+      result: $("result"),
+      tokenDot: $("tokenDot"),
+      tokenText: $("tokenText")
+    };
+
+    controls.baseUrl.value = window.location.origin || "http://127.0.0.1:8001";
+    function baseUrl() {
+      return controls.baseUrl.value.replace(/\/+$/, "");
+    }
+
+    function setBusy(busy) {
+      document.querySelectorAll("button").forEach((button) => {
+        button.disabled = busy;
+      });
+    }
+
+    function setStatus(text, kind) {
+      controls.status.textContent = text;
+      controls.status.className = "status-line" + (kind ? " " + kind : "");
+    }
+
+    function render(data) {
+      controls.result.textContent = JSON.stringify(data, null, 2);
+    }
+
+    function updateTokenView() {
+      controls.tokenDot.classList.toggle("active", Boolean(state.token));
+      if (!state.token) {
+        controls.tokenText.textContent = "未登录";
+        return;
+      }
+      controls.tokenText.textContent = "已登录 token=" + state.token.slice(0, 18) + "...";
+    }
+
+    async function request(path, options = {}) {
+      const headers = Object.assign({}, options.headers || {});
+      if (state.token) {
+        headers.Authorization = "Bearer " + state.token;
+      }
+      if (options.body && !headers["Content-Type"]) {
+        headers["Content-Type"] = "application/json";
+      }
+
+      const response = await fetch(baseUrl() + path, Object.assign({}, options, { headers }));
+      const text = await response.text();
+      let data;
+      try {
+        data = text ? JSON.parse(text) : null;
+      } catch (error) {
+        data = text;
+      }
+      if (!response.ok) {
+        const message = data && data.message ? data.message : response.statusText;
+        throw Object.assign(new Error(message), { status: response.status, data });
+      }
+      return data;
+    }
+
+    function saveToken(data) {
+      state.token = data && data.data ? data.data.token : "";
+      state.expiresAt = data && data.data ? data.data.expiresAt : "";
+      if (state.token) {
+        localStorage.setItem("springcloud-token", state.token);
+        localStorage.setItem("springcloud-token-expires-at", state.expiresAt);
+      }
+      updateTokenView();
+    }
+
+    const actions = {
+      async health() {
+        return request("/actuator/health");
+      },
+      async register() {
+        const data = await request("/api/auth/register", {
+          method: "POST",
+          body: JSON.stringify({
+            username: controls.username.value.trim(),
+            password: controls.password.value,
+            role: controls.role.value
+          })
+        });
+        saveToken(data);
+        return data;
+      },
+      async login() {
+        const data = await request("/api/auth/login", {
+          method: "POST",
+          body: JSON.stringify({
+            username: controls.username.value.trim(),
+            password: controls.password.value
+          })
+        });
+        saveToken(data);
+        return data;
+      },
+      authMe() {
+        return request("/api/auth/me");
+      },
+      userMe() {
+        return request("/api/users/me");
+      },
+      stock() {
+        return request("/api/stock/" + encodeURIComponent(controls.productCode.value.trim()));
+      },
+      createOrder() {
+        return request("/api/orders", {
+          method: "POST",
+          body: JSON.stringify({
+            productCode: controls.productCode.value.trim(),
+            quantity: Number(controls.quantity.value),
+            amount: Number(controls.amount.value)
+          })
+        });
+      },
+      myOrders() {
+        return request("/api/orders/my");
+      },
+      messages() {
+        return request("/api/messages/events");
+      },
+      logout() {
+        state.token = "";
+        state.expiresAt = "";
+        localStorage.removeItem("springcloud-token");
+        localStorage.removeItem("springcloud-token-expires-at");
+        updateTokenView();
+        return { code: 0, message: "logged out", data: null };
+      },
+      clear() {
+        controls.result.textContent = "{}";
+        return null;
+      }
+    };
+
+    document.addEventListener("click", async (event) => {
+      const button = event.target.closest("button[data-action]");
+      if (!button) {
+        return;
+      }
+
+      const action = button.dataset.action;
+      const run = actions[action];
+      if (!run) {
+        return;
+      }
+
+      setBusy(true);
+      setStatus("请求中...");
+      try {
+        const data = await run();
+        if (data !== null) {
+          render(data);
+        }
+        setStatus("完成", "ok");
+      } catch (error) {
+        render(error.data || { message: error.message, status: error.status || 0 });
+        setStatus(error.message, "error");
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    updateTokenView();
+  </script>
+</body>
+</html>

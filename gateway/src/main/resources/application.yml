@@ -1,0 +1,87 @@
+server:
+  port: 8001
+
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: gateway
+  config:
+    import: optional:nacos:${spring.application.name}.yml?group=DEFAULT_GROUP
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_ADDR:127.0.0.1:8848}
+        namespace: ${NACOS_NAMESPACE:public}
+        group: DEFAULT_GROUP
+      config:
+        server-addr: ${NACOS_ADDR:127.0.0.1:8848}
+        namespace: ${NACOS_NAMESPACE:public}
+        group: DEFAULT_GROUP
+        file-extension: yml
+    gateway:
+      routes:
+        - id: auth-service
+          uri: ${AUTH_SERVICE_URI:lb://auth-service}
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=1
+        - id: user-service
+          uri: ${USER_SERVICE_URI:lb://user-service}
+          predicates:
+            - Path=/api/users/**
+          filters:
+            - StripPrefix=1
+        - id: order-service
+          uri: ${ORDER_SERVICE_URI:lb://order-service}
+          predicates:
+            - Path=/api/orders/**
+          filters:
+            - StripPrefix=1
+        - id: message-service
+          uri: ${MESSAGE_SERVICE_URI:lb://message-service}
+          predicates:
+            - Path=/api/messages/**
+          filters:
+            - StripPrefix=1
+        - id: stock-service
+          uri: ${STOCK_SERVICE_URI:lb://stock-service}
+          predicates:
+            - Path=/api/stock/**
+          filters:
+            - StripPrefix=1
+    sentinel:
+      transport:
+        dashboard: ${SENTINEL_DASHBOARD:127.0.0.1:8858}
+        port: 8719
+      filter:
+        enabled: true
+  feign:
+    client:
+      config:
+        default:
+          connect-timeout: 5000
+          read-timeout: 10000
+    circuitbreaker:
+      enabled: true
+  # SkyWalking Agent配置（通过JVM参数启动时添加）
+  # -javaagent:/path/to/skywalking-agent.jar
+  # -Dskywalking.agent.service_name=${spring.application.name}
+  # -Dskywalking.collector.backend_service=${SKYWALKING_ADDR:127.0.0.1:11800}
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+      - io.seata.spring.boot.autoconfigure.SeataAutoConfiguration
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+app:
+  security:
+    secret: ${APP_TOKEN_SECRET:gzu-demo-secret}

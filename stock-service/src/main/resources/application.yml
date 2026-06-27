@@ -1,0 +1,77 @@
+server:
+  port: 8005
+
+spring:
+  application:
+    name: stock-service
+  config:
+    import: optional:nacos:${spring.application.name}.yml?group=DEFAULT_GROUP
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_ADDR:127.0.0.1:8848}
+        namespace: ${NACOS_NAMESPACE:public}
+        group: DEFAULT_GROUP
+      config:
+        server-addr: ${NACOS_ADDR:127.0.0.1:8848}
+        namespace: ${NACOS_NAMESPACE:public}
+        group: DEFAULT_GROUP
+        file-extension: yml
+    sentinel:
+      transport:
+        dashboard: ${SENTINEL_DASHBOARD:127.0.0.1:8858}
+        port: 8725
+  # SkyWalking Agent配置（通过JVM参数启动时添加）
+  # -javaagent:/path/to/skywalking-agent.jar
+  # -Dskywalking.agent.service_name=${spring.application.name}
+  # -Dskywalking.collector.backend_service=${SKYWALKING_ADDR:127.0.0.1:11800}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${BUSINESS_DB_NAME:springcloud_business}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
+  sql:
+    init:
+      mode: never
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  tx-service-group: my_test_tx_group
+  registry:
+    type: file
+  config:
+    type: file
+  service:
+    vgroup-mapping:
+      my_test_tx_group: default
+    grouplist:
+      default: ${SEATA_ADDR:127.0.0.1:8091}
+
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 5000
+        read-timeout: 10000
+  circuitbreaker:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+app:
+  security:
+    secret: ${APP_TOKEN_SECRET:gzu-demo-secret}
+    public-path-prefixes:
+      - /actuator
+      - /error
+      - /internal
+      - /stock
