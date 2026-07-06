@@ -335,7 +335,14 @@
       tokenText: $("tokenText")
     };
 
-    controls.baseUrl.value = window.location.origin || "http://127.0.0.1:8001";
+    function defaultGatewayUrl() {
+      if (!window.location.origin) {
+        return "http://127.0.0.1:8001";
+      }
+      return window.location.origin.replace(/:8007$/, ":8001");
+    }
+
+    controls.baseUrl.value = defaultGatewayUrl();
     function baseUrl() {
       return controls.baseUrl.value.replace(/\/+$/, "");
     }
@@ -355,11 +362,38 @@
       controls.result.textContent = JSON.stringify(data, null, 2);
     }
 
+    function decodeBase64Url(value) {
+      const normalized = value.replace(/-/g, "+").replace(/_/g, "/");
+      const padded = normalized + "=".repeat((4 - normalized.length % 4) % 4);
+      return decodeURIComponent(Array.from(atob(padded), (char) => {
+        return "%" + char.charCodeAt(0).toString(16).padStart(2, "0");
+      }).join(""));
+    }
+
+    function tokenRole() {
+      if (!state.token) {
+        return "";
+      }
+      try {
+        const payload = decodeBase64Url(state.token.split(".")[0] || "");
+        const parts = payload.split("|");
+        return parts.length >= 3 ? decodeBase64Url(parts[2]) : "";
+      } catch (error) {
+        return "";
+      }
+    }
+
     function updateTokenView() {
-      controls.tokenDot.classList.toggle("active", Boolean(state.token));
+      const loggedIn = Boolean(state.token);
+      controls.tokenDot.classList.toggle("active", loggedIn);
+      controls.role.disabled = loggedIn;
       if (!state.token) {
         controls.tokenText.textContent = "未登录";
         return;
+      }
+      const role = tokenRole();
+      if (role && controls.role.querySelector("option[value=\"" + role + "\"]")) {
+        controls.role.value = role;
       }
       controls.tokenText.textContent = "已登录 token=" + state.token.slice(0, 18) + "...";
     }
@@ -455,6 +489,7 @@
         state.expiresAt = "";
         localStorage.removeItem("springcloud-token");
         localStorage.removeItem("springcloud-token-expires-at");
+        controls.role.disabled = false;
         updateTokenView();
         return { code: 0, message: "logged out", data: null };
       },

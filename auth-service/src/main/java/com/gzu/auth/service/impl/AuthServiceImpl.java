@@ -78,6 +78,12 @@ public class AuthServiceImpl implements AuthService {
         // 通过OpenFeign调用user-service创建用户
         // 若user-service不可用，会触发UserFeignClientFallback返回SERVICE_UNAVAILABLE
         ApiResponse<UserInfoVO> response = userFeignClient.create(request);
+        if (response == null) {
+            throw new BusinessException(ErrorCode.SERVICE_UNAVAILABLE, "user service temporarily unavailable");
+        }
+        if (response.code() != ErrorCode.SUCCESS.getCode()) {
+            throw new BusinessException(ErrorCode.BUSINESS_ERROR, response.message());
+        }
         UserInfoVO user = response.data();
         if (user == null) {
             throw new BusinessException(ErrorCode.BUSINESS_ERROR, "create user failed");
@@ -104,4 +110,3 @@ public class AuthServiceImpl implements AuthService {
         return new TokenVO(token, expiresAt);
     }
 }
-
