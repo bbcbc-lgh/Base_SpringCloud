@@ -1,0 +1,201 @@
+services:
+  nacos:
+    image: nacos/nacos-server:v2.3.2
+    container_name: springcloud-nacos
+    environment:
+      MODE: standalone
+      JVM_XMS: 256m
+      JVM_XMX: 256m
+      JVM_XMN: 128m
+      JVM_MS: 128m
+      JVM_MMS: 320m
+      TIME_ZONE: Asia/Shanghai
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+    volumes:
+      - nacos_data:/home/nacos/data
+      - nacos_logs:/home/nacos/logs
+    networks:
+      springcloud:
+        aliases:
+          - nacos
+    restart: unless-stopped
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: springcloud-redis
+    command: redis-server
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      springcloud:
+        aliases:
+          - redis
+    restart: unless-stopped
+
+  seata:
+    image: seataio/seata-server:2.0.0
+    container_name: springcloud-seata
+    environment:
+      STORE_MODE: file
+      SEATA_PORT: 8091
+      JVM_XMS: 256m
+      JVM_XMX: 256m
+      TZ: Asia/Shanghai
+    ports:
+      - "7091:7091"
+      - "8091:8091"
+    volumes:
+      - seata_logs:/root/logs
+    networks:
+      springcloud:
+        aliases:
+          - seata
+    restart: unless-stopped
+
+  sentinel:
+    image: bladex/sentinel-dashboard:1.8.7
+    container_name: springcloud-sentinel
+    environment:
+      JAVA_OPTS: "-Dserver.port=8858 -Dcsp.sentinel.dashboard.server.host=sentinel -Dcsp.sentinel.dashboard.server.port=8858"
+    ports:
+      - "8858:8858"
+    volumes:
+      - sentinel_logs:/root/logs
+    networks:
+      springcloud:
+        aliases:
+          - sentinel
+    restart: unless-stopped
+
+  skywalking-oap:
+    image: apache/skywalking-oap-server:9.7.0
+    container_name: springcloud-skywalking-oap
+    environment:
+      JAVA_OPTS: "-Xms512m -Xmx1024m"
+    ports:
+      - "11800:11800"
+      - "12800:12800"
+    volumes:
+      - skywalking_oap_logs:/logs
+    networks:
+      springcloud:
+        aliases:
+          - skywalking-oap
+    restart: unless-stopped
+
+  skywalking-ui:
+    image: apache/skywalking-ui:9.7.0
+    container_name: springcloud-skywalking-ui
+    environment:
+      SW_OAP_ADDRESS: http://skywalking-oap:12800
+      JAVA_OPTS: " -Xms256M "
+      SW_ZIPKIN_ADDRESS: http://127.0.0.1:9412
+    ports:
+      - "8080:8080"
+    depends_on:
+      - skywalking-oap
+    networks:
+      springcloud:
+        aliases:
+          - skywalking-ui
+    restart: unless-stopped
+
+  rocketmq-namesrv:
+    image: apache/rocketmq:5.3.1
+    container_name: springcloud-rocketmq-namesrv
+    command: sh mqnamesrv
+    environment:
+      JAVA_OPT_EXT: "-Xms256m -Xmx256m"
+    ports:
+      - "9876:9876"
+    volumes:
+      - rocketmq_namesrv_logs:/home/rocketmq/logs
+    networks:
+      springcloud:
+        aliases:
+          - rocketmq-namesrv
+          - springcloud-rocketmq-namesrv
+    restart: unless-stopped
+
+  rocketmq-broker:
+    image: apache/rocketmq:5.3.1
+    container_name: springcloud-rocketmq-broker
+    environment:
+      JAVA_OPT_EXT: "-Xms256m -Xmx256m"
+    command: >
+      sh -c "mkdir -p /home/rocketmq/store/commitlog /home/rocketmq/store/consumequeue /home/rocketmq/store/index &&
+      printf 'brokerClusterName=DefaultCluster\nbrokerName=broker-a\nbrokerId=0\nbrokerIP1=${BROKER_IP:-10.189.170.134}\nnamesrvAddr=rocketmq-namesrv:9876\nautoCreateTopicEnable=true\nlistenPort=10911\nstorePathRootDir=/home/rocketmq/store\nstorePathCommitLog=/home/rocketmq/store/commitlog\nstorePathConsumeQueue=/home/rocketmq/store/consumequeue\nstorePathIndex=/home/rocketmq/store/index\nbrokerRole=ASYNC_MASTER\nflushDiskType=ASYNC_FLUSH\n' > /tmp/broker.conf &&
+      /home/rocketmq/rocketmq-5.3.1/bin/mqbroker -c /tmp/broker.conf"
+    ports:
+      - "10909:10909"
+      - "10911:10911"
+      - "10912:10912"
+    volumes:
+      - rocketmq_broker_logs:/home/rocketmq/logs
+      - rocketmq_broker_store:/home/rocketmq/store
+    depends_on:
+      - rocketmq-namesrv
+    networks:
+      springcloud:
+        aliases:
+          - rocketmq-broker
+    restart: unless-stopped
+
+  rocketmq-dashboard:
+    image: apacherocketmq/rocketmq-dashboard:latest
+    container_name: springcloud-rocketmq-dashboard
+    environment:
+      JAVA_OPTS: "-Drocketmq.namesrv.addr=springcloud-rocketmq-namesrv:9876"
+    ports:
+      - "8088:8082"
+    volumes:
+      - rocketmq_dashboard_tmp:/tmp
+    depends_on:
+      - rocketmq-namesrv
+      - rocketmq-broker
+    networks:
+      springcloud:
+        aliases:
+          - rocketmq-dashboard
+    restart: unless-stopped
+
+networks:
+  springcloud:
+    name: SpringCloud
+    external: true
+
+volumes:
+  nacos_data:
+    name: springcloud_nacos_data
+    external: true
+  nacos_logs:
+    name: springcloud_nacos_logs
+    external: true
+  redis_data:
+    name: springcloud_redis_data
+    external: true
+  seata_logs:
+    name: springcloud_seata_logs
+    external: true
+  sentinel_logs:
+    name: springcloud_sentinel_logs
+    external: true
+  skywalking_oap_logs:
+    name: springcloud_skywalking_oap_logs
+    external: true
+  rocketmq_namesrv_logs:
+    name: springcloud_rocketmq_namesrv_logs
+    external: true
+  rocketmq_broker_logs:
+    name: springcloud_rocketmq_broker_logs
+    external: true
+  rocketmq_broker_store:
+    name: springcloud_rocketmq_broker_store
+    external: true
+  rocketmq_dashboard_tmp:
+    name: springcloud_rocketmq_dashboard_tmp
+    external: true

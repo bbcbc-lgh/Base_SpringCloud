@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/orders"
+method: POST
+headers:
+  Authorization: Bearer {{token}}
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "productCode": "{{productCode}}",
+      "quantity": 99999,
+      "amount": 999.00
+    }
+order: 10000

@@ -1,0 +1,151 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1783430492593,63,01 Login,200,,10 Users - 5 Loops 1-1,text,true,,464,256,1,1,http://127.0.0.1:8001/api/auth/login,54,0,31
+1783430492720,14,02 Query Stock,200,,10 Users - 5 Loops 1-1,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,14,0,0
+1783430493444,31,01 Login,200,,10 Users - 5 Loops 1-2,text,true,,464,256,2,2,http://127.0.0.1:8001/api/auth/login,31,0,2
+1783430493476,19,02 Query Stock,200,,10 Users - 5 Loops 1-2,text,true,,302,312,2,2,http://127.0.0.1:8001/api/stock/P001,19,0,0
+1783430492735,785,03 Create Order,200,,10 Users - 5 Loops 1-1,text,true,,432,379,2,2,http://127.0.0.1:8001/api/orders,785,0,0
+1783430493522,23,01 Login,200,,10 Users - 5 Loops 1-1,text,true,,464,374,2,2,http://127.0.0.1:8001/api/auth/login,22,0,0
+1783430493547,15,02 Query Stock,200,,10 Users - 5 Loops 1-1,text,true,,302,312,2,2,http://127.0.0.1:8001/api/stock/P001,14,0,0
+1783430493496,132,03 Create Order,200,,10 Users - 5 Loops 1-2,text,true,,432,379,2,2,http://127.0.0.1:8001/api/orders,131,0,0
+1783430493629,24,01 Login,200,,10 Users - 5 Loops 1-2,text,true,,464,374,2,2,http://127.0.0.1:8001/api/auth/login,22,0,0
+1783430493654,17,02 Query Stock,200,,10 Users - 5 Loops 1-2,text,true,,302,312,2,2,http://127.0.0.1:8001/api/stock/P001,17,0,0
+1783430493563,143,03 Create Order,200,,10 Users - 5 Loops 1-1,text,true,,432,379,2,2,http://127.0.0.1:8001/api/orders,143,0,0
+1783430493707,33,01 Login,200,,10 Users - 5 Loops 1-1,text,true,,464,374,2,2,http://127.0.0.1:8001/api/auth/login,33,0,0
+1783430493741,26,02 Query Stock,200,,10 Users - 5 Loops 1-1,text,true,,302,312,2,2,http://127.0.0.1:8001/api/stock/P001,25,0,0
+1783430493672,119,03 Create Order,200,,10 Users - 5 Loops 1-2,text,true,,432,379,2,2,http://127.0.0.1:8001/api/orders,119,0,0
+1783430493792,27,01 Login,200,,10 Users - 5 Loops 1-2,text,true,,464,374,2,2,http://127.0.0.1:8001/api/auth/login,27,0,0
+1783430493820,26,02 Query Stock,200,,10 Users - 5 Loops 1-2,text,true,,302,312,2,2,http://127.0.0.1:8001/api/stock/P001,26,0,0
+1783430493768,125,03 Create Order,200,,10 Users - 5 Loops 1-1,text,true,,432,379,2,2,http://127.0.0.1:8001/api/orders,124,0,0
+1783430493894,24,01 Login,200,,10 Users - 5 Loops 1-1,text,true,,464,374,2,2,http://127.0.0.1:8001/api/auth/login,24,0,0
+1783430493919,19,02 Query Stock,200,,10 Users - 5 Loops 1-1,text,true,,302,312,2,2,http://127.0.0.1:8001/api/stock/P001,19,0,0
+1783430493847,98,03 Create Order,200,,10 Users - 5 Loops 1-2,text,true,,432,379,2,2,http://127.0.0.1:8001/api/orders,98,0,0
+1783430493947,23,01 Login,200,,10 Users - 5 Loops 1-2,text,true,,464,374,2,2,http://127.0.0.1:8001/api/auth/login,23,0,0
+1783430493971,14,02 Query Stock,200,,10 Users - 5 Loops 1-2,text,true,,302,312,2,2,http://127.0.0.1:8001/api/stock/P001,14,0,0
+1783430493939,128,03 Create Order,200,,10 Users - 5 Loops 1-1,text,true,,432,379,2,2,http://127.0.0.1:8001/api/orders,128,0,0
+1783430494068,17,01 Login,200,,10 Users - 5 Loops 1-1,text,true,,464,374,2,2,http://127.0.0.1:8001/api/auth/login,16,0,0
+1783430494086,12,02 Query Stock,200,,10 Users - 5 Loops 1-1,text,true,,302,312,2,2,http://127.0.0.1:8001/api/stock/P001,11,0,0
+1783430493986,120,03 Create Order,200,,10 Users - 5 Loops 1-2,text,true,,432,379,2,2,http://127.0.0.1:8001/api/orders,120,0,0
+1783430494107,18,01 Login,200,,10 Users - 5 Loops 1-2,text,true,,464,374,2,2,http://127.0.0.1:8001/api/auth/login,18,0,0
+1783430494126,9,02 Query Stock,200,,10 Users - 5 Loops 1-2,text,true,,302,312,2,2,http://127.0.0.1:8001/api/stock/P001,9,0,0
+1783430494099,69,03 Create Order,200,,10 Users - 5 Loops 1-1,text,true,,432,379,2,2,http://127.0.0.1:8001/api/orders,69,0,0
+1783430494136,65,03 Create Order,200,,10 Users - 5 Loops 1-2,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,65,0,0
+1783430494442,22,01 Login,200,,10 Users - 5 Loops 1-3,text,true,,464,256,1,1,http://127.0.0.1:8001/api/auth/login,22,0,1
+1783430494465,9,02 Query Stock,200,,10 Users - 5 Loops 1-3,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,9,0,0
+1783430494475,64,03 Create Order,200,,10 Users - 5 Loops 1-3,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,64,0,0
+1783430494540,18,01 Login,200,,10 Users - 5 Loops 1-3,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,18,0,0
+1783430494559,10,02 Query Stock,200,,10 Users - 5 Loops 1-3,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,9,0,0
+1783430494569,63,03 Create Order,200,,10 Users - 5 Loops 1-3,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,63,0,0
+1783430494633,18,01 Login,200,,10 Users - 5 Loops 1-3,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,18,0,0
+1783430494652,11,02 Query Stock,200,,10 Users - 5 Loops 1-3,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,11,0,0
+1783430494664,60,03 Create Order,200,,10 Users - 5 Loops 1-3,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,60,0,0
+1783430494725,14,01 Login,200,,10 Users - 5 Loops 1-3,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,14,0,0
+1783430494740,9,02 Query Stock,200,,10 Users - 5 Loops 1-3,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,8,0,0
+1783430494749,81,03 Create Order,200,,10 Users - 5 Loops 1-3,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,81,0,0
+1783430494831,16,01 Login,200,,10 Users - 5 Loops 1-3,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,16,0,0
+1783430494848,9,02 Query Stock,200,,10 Users - 5 Loops 1-3,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,9,0,0
+1783430494858,53,03 Create Order,200,,10 Users - 5 Loops 1-3,text,true,,431,379,1,1,http://127.0.0.1:8001/api/orders,53,0,0
+1783430495449,15,01 Login,200,,10 Users - 5 Loops 1-4,text,true,,464,256,1,1,http://127.0.0.1:8001/api/auth/login,15,0,2
+1783430495465,9,02 Query Stock,200,,10 Users - 5 Loops 1-4,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,9,0,0
+1783430495474,48,03 Create Order,200,,10 Users - 5 Loops 1-4,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,48,0,0
+1783430495522,12,01 Login,200,,10 Users - 5 Loops 1-4,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,12,0,0
+1783430495535,6,02 Query Stock,200,,10 Users - 5 Loops 1-4,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,6,0,0
+1783430495542,47,03 Create Order,200,,10 Users - 5 Loops 1-4,text,true,,431,379,1,1,http://127.0.0.1:8001/api/orders,47,0,0
+1783430495590,12,01 Login,200,,10 Users - 5 Loops 1-4,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,12,0,0
+1783430495603,6,02 Query Stock,200,,10 Users - 5 Loops 1-4,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,6,0,0
+1783430495610,55,03 Create Order,200,,10 Users - 5 Loops 1-4,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,54,0,0
+1783430495665,15,01 Login,200,,10 Users - 5 Loops 1-4,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,14,0,0
+1783430495680,6,02 Query Stock,200,,10 Users - 5 Loops 1-4,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,6,0,0
+1783430495687,46,03 Create Order,200,,10 Users - 5 Loops 1-4,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,46,0,0
+1783430495733,13,01 Login,200,,10 Users - 5 Loops 1-4,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,13,0,0
+1783430495747,10,02 Query Stock,200,,10 Users - 5 Loops 1-4,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,10,0,0
+1783430495758,45,03 Create Order,200,,10 Users - 5 Loops 1-4,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,45,0,0
+1783430496447,14,01 Login,200,,10 Users - 5 Loops 1-5,text,true,,464,256,1,1,http://127.0.0.1:8001/api/auth/login,14,0,1
+1783430496462,7,02 Query Stock,200,,10 Users - 5 Loops 1-5,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,7,0,0
+1783430496470,64,03 Create Order,200,,10 Users - 5 Loops 1-5,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,64,0,0
+1783430496535,12,01 Login,200,,10 Users - 5 Loops 1-5,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,12,0,0
+1783430496548,6,02 Query Stock,200,,10 Users - 5 Loops 1-5,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,6,0,0
+1783430496555,40,03 Create Order,200,,10 Users - 5 Loops 1-5,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,40,0,0
+1783430496596,12,01 Login,200,,10 Users - 5 Loops 1-5,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,11,0,0
+1783430496608,6,02 Query Stock,200,,10 Users - 5 Loops 1-5,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,6,0,0
+1783430496615,45,03 Create Order,200,,10 Users - 5 Loops 1-5,text,true,,431,379,1,1,http://127.0.0.1:8001/api/orders,45,0,0
+1783430496661,11,01 Login,200,,10 Users - 5 Loops 1-5,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,11,0,0
+1783430496673,7,02 Query Stock,200,,10 Users - 5 Loops 1-5,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,6,0,0
+1783430496680,45,03 Create Order,200,,10 Users - 5 Loops 1-5,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,45,0,0
+1783430496725,12,01 Login,200,,10 Users - 5 Loops 1-5,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,12,0,0
+1783430496738,6,02 Query Stock,200,,10 Users - 5 Loops 1-5,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,6,0,0
+1783430496744,51,03 Create Order,200,,10 Users - 5 Loops 1-5,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,51,0,0
+1783430497436,14,01 Login,200,,10 Users - 5 Loops 1-6,text,true,,464,256,1,1,http://127.0.0.1:8001/api/auth/login,14,0,1
+1783430497451,8,02 Query Stock,200,,10 Users - 5 Loops 1-6,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,8,0,0
+1783430497459,48,03 Create Order,200,,10 Users - 5 Loops 1-6,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,48,0,0
+1783430497507,12,01 Login,200,,10 Users - 5 Loops 1-6,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,12,0,0
+1783430497520,7,02 Query Stock,200,,10 Users - 5 Loops 1-6,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,6,0,0
+1783430497527,45,03 Create Order,200,,10 Users - 5 Loops 1-6,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,45,0,0
+1783430497572,14,01 Login,200,,10 Users - 5 Loops 1-6,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,14,0,0
+1783430497587,6,02 Query Stock,200,,10 Users - 5 Loops 1-6,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,6,0,0
+1783430497594,43,03 Create Order,200,,10 Users - 5 Loops 1-6,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,43,0,0
+1783430497637,12,01 Login,200,,10 Users - 5 Loops 1-6,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,12,0,0
+1783430497650,7,02 Query Stock,200,,10 Users - 5 Loops 1-6,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,7,0,0
+1783430497657,43,03 Create Order,200,,10 Users - 5 Loops 1-6,text,true,,431,379,1,1,http://127.0.0.1:8001/api/orders,43,0,0
+1783430497701,12,01 Login,200,,10 Users - 5 Loops 1-6,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,12,0,0
+1783430497713,6,02 Query Stock,200,,10 Users - 5 Loops 1-6,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,6,0,0
+1783430497720,43,03 Create Order,200,,10 Users - 5 Loops 1-6,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,43,0,0
+1783430498440,11,01 Login,200,,10 Users - 5 Loops 1-7,text,true,,464,256,1,1,http://127.0.0.1:8001/api/auth/login,11,0,0
+1783430498452,6,02 Query Stock,200,,10 Users - 5 Loops 1-7,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,6,0,0
+1783430498458,46,03 Create Order,200,,10 Users - 5 Loops 1-7,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,46,0,0
+1783430498504,14,01 Login,200,,10 Users - 5 Loops 1-7,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,14,0,0
+1783430498519,7,02 Query Stock,200,,10 Users - 5 Loops 1-7,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,7,0,0
+1783430498526,41,03 Create Order,200,,10 Users - 5 Loops 1-7,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,41,0,0
+1783430498567,16,01 Login,200,,10 Users - 5 Loops 1-7,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,16,0,0
+1783430498584,7,02 Query Stock,200,,10 Users - 5 Loops 1-7,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,7,0,0
+1783430498591,48,03 Create Order,200,,10 Users - 5 Loops 1-7,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,48,0,0
+1783430498640,12,01 Login,200,,10 Users - 5 Loops 1-7,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,12,0,0
+1783430498653,6,02 Query Stock,200,,10 Users - 5 Loops 1-7,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,6,0,0
+1783430498660,51,03 Create Order,200,,10 Users - 5 Loops 1-7,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,51,0,0
+1783430498712,12,01 Login,200,,10 Users - 5 Loops 1-7,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,12,0,0
+1783430498725,8,02 Query Stock,200,,10 Users - 5 Loops 1-7,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,8,0,0
+1783430498733,46,03 Create Order,200,,10 Users - 5 Loops 1-7,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,46,0,0
+1783430499446,12,01 Login,200,,10 Users - 5 Loops 1-8,text,true,,464,256,1,1,http://127.0.0.1:8001/api/auth/login,12,0,1
+1783430499459,7,02 Query Stock,200,,10 Users - 5 Loops 1-8,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,7,0,0
+1783430499467,48,03 Create Order,200,,10 Users - 5 Loops 1-8,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,48,0,0
+1783430499516,12,01 Login,200,,10 Users - 5 Loops 1-8,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,12,0,0
+1783430499528,7,02 Query Stock,200,,10 Users - 5 Loops 1-8,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,7,0,0
+1783430499535,44,03 Create Order,200,,10 Users - 5 Loops 1-8,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,44,0,0
+1783430499580,10,01 Login,200,,10 Users - 5 Loops 1-8,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,10,0,0
+1783430499591,7,02 Query Stock,200,,10 Users - 5 Loops 1-8,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,7,0,0
+1783430499599,62,03 Create Order,200,,10 Users - 5 Loops 1-8,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,62,0,0
+1783430499662,16,01 Login,200,,10 Users - 5 Loops 1-8,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,16,0,0
+1783430499679,10,02 Query Stock,200,,10 Users - 5 Loops 1-8,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,10,0,0
+1783430499689,48,03 Create Order,200,,10 Users - 5 Loops 1-8,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,47,0,0
+1783430499737,14,01 Login,200,,10 Users - 5 Loops 1-8,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,14,0,0
+1783430499752,7,02 Query Stock,200,,10 Users - 5 Loops 1-8,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,6,0,0
+1783430499759,59,03 Create Order,200,,10 Users - 5 Loops 1-8,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,59,0,0
+1783430500440,17,01 Login,200,,10 Users - 5 Loops 1-9,text,true,,464,256,1,1,http://127.0.0.1:8001/api/auth/login,17,0,1
+1783430500458,7,02 Query Stock,200,,10 Users - 5 Loops 1-9,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,7,0,0
+1783430500466,64,03 Create Order,200,,10 Users - 5 Loops 1-9,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,64,0,0
+1783430500531,15,01 Login,200,,10 Users - 5 Loops 1-9,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,14,0,0
+1783430500546,7,02 Query Stock,200,,10 Users - 5 Loops 1-9,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,7,0,0
+1783430500554,66,03 Create Order,200,,10 Users - 5 Loops 1-9,text,true,,431,379,1,1,http://127.0.0.1:8001/api/orders,66,0,0
+1783430500621,14,01 Login,200,,10 Users - 5 Loops 1-9,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,14,0,0
+1783430500636,8,02 Query Stock,200,,10 Users - 5 Loops 1-9,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,8,0,0
+1783430500644,55,03 Create Order,200,,10 Users - 5 Loops 1-9,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,55,0,0
+1783430500699,17,01 Login,200,,10 Users - 5 Loops 1-9,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,17,0,0
+1783430500717,8,02 Query Stock,200,,10 Users - 5 Loops 1-9,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,8,0,0
+1783430500725,50,03 Create Order,200,,10 Users - 5 Loops 1-9,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,49,0,0
+1783430500775,14,01 Login,200,,10 Users - 5 Loops 1-9,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,14,0,0
+1783430500789,8,02 Query Stock,200,,10 Users - 5 Loops 1-9,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,8,0,0
+1783430500797,56,03 Create Order,200,,10 Users - 5 Loops 1-9,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,56,0,0
+1783430501432,13,01 Login,200,,10 Users - 5 Loops 1-10,text,true,,464,256,1,1,http://127.0.0.1:8001/api/auth/login,13,0,1
+1783430501446,8,02 Query Stock,200,,10 Users - 5 Loops 1-10,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,8,0,0
+1783430501455,52,03 Create Order,200,,10 Users - 5 Loops 1-10,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,52,0,0
+1783430501507,15,01 Login,200,,10 Users - 5 Loops 1-10,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,14,0,0
+1783430501522,7,02 Query Stock,200,,10 Users - 5 Loops 1-10,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,7,0,0
+1783430501530,51,03 Create Order,200,,10 Users - 5 Loops 1-10,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,51,0,0
+1783430501581,15,01 Login,200,,10 Users - 5 Loops 1-10,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,15,0,0
+1783430501597,7,02 Query Stock,200,,10 Users - 5 Loops 1-10,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,7,0,0
+1783430501605,51,03 Create Order,200,,10 Users - 5 Loops 1-10,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,51,0,0
+1783430501657,18,01 Login,200,,10 Users - 5 Loops 1-10,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,18,0,0
+1783430501676,6,02 Query Stock,200,,10 Users - 5 Loops 1-10,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,6,0,0
+1783430501683,58,03 Create Order,200,,10 Users - 5 Loops 1-10,text,true,,432,379,1,1,http://127.0.0.1:8001/api/orders,58,0,0
+1783430501741,17,01 Login,200,,10 Users - 5 Loops 1-10,text,true,,464,374,1,1,http://127.0.0.1:8001/api/auth/login,16,0,0
+1783430501758,8,02 Query Stock,200,,10 Users - 5 Loops 1-10,text,true,,302,312,1,1,http://127.0.0.1:8001/api/stock/P001,8,0,0
+1783430501767,43,03 Create Order,200,,10 Users - 5 Loops 1-10,text,true,,431,379,1,1,http://127.0.0.1:8001/api/orders,43,0,0

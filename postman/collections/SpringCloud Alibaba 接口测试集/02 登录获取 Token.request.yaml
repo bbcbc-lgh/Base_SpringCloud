@@ -1,0 +1,24 @@
+$kind: http-request
+url: "{{baseUrl}}/auth/login"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('登录成功并返回 Token', function () {
+        pm.response.to.have.status(200);
+        const json = pm.response.json();
+        pm.expect(json.code).to.eql(0);
+        pm.expect(json.data.token).to.be.a('string').and.not.empty;
+        pm.environment.set('token', json.data.token);
+      });
+    language: text/javascript
+order: 2000

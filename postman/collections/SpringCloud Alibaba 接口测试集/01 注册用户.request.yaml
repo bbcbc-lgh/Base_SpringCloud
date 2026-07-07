@@ -1,0 +1,25 @@
+$kind: http-request
+url: "{{baseUrl}}/auth/register"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "username": "{{username}}",
+      "password": "{{password}}",
+      "role": "USER"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('注册接口返回成功结构', function () {
+        pm.expect(pm.response.code).to.be.oneOf([200, 400]);
+      });
+      if (pm.response.code === 200) {
+        const json = pm.response.json();
+        if (json.data && json.data.token) pm.environment.set('token', json.data.token);
+      }
+    language: text/javascript
+order: 1000

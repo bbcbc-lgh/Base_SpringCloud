@@ -1,0 +1,16 @@
+name: SpringCloud Alibaba
+values:
+  - key: baseUrl
+    value: 'http://127.0.0.1:8001/api'
+  - key: username
+    value: demo_user
+  - key: password
+    value: '123'
+  - key: productCode
+    value: P001
+  - key: quantity
+    value: '1'
+  - key: amount
+    value: '99.00'
+  - key: token
+    value: ''

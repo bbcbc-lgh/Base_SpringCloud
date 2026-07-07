@@ -1,0 +1,2 @@
+$kind: collection
+description: 覆盖注册、登录、查询用户、查询库存、创建订单、查询订单、查询消息记录，以及未携带 Token、库存不足等异常场景。

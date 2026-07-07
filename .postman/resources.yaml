@@ -1,0 +1,15 @@
+# Use this workspace to collaborate
+workspace:
+  id: 341cddc6-5ed2-4940-88c4-ad5ec7b45ea6
+
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+
+cloudResources:
+  collections:
+    ../postman/collections/SpringCloud Alibaba 接口测试集: e8999079-1b38-4676-a301-21775abcd0eb
+
+# All resources in the `postman/` folder are automatically registered in Local View.
+# Point to additional files outside the `postman/` folder to register them individually. Example:
+#localResources:
+#  collections:
+#    - ../tests/E2E Test Collection/
