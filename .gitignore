@@ -21,14 +21,26 @@ Thumbs.db
 # Logs
 *.log
 logs/
+run-logs/
 
-# Local documentation drafts
+# Coursework/offline deliverables
 docs/
+source/
 
 # Runtime / local config
 .env
 .env.*
 !.env.example
+application-local.yml
+application-local.yaml
+application-*.local.yml
+application-*.local.yaml
 
 # Build cache
 .mvn/wrapper/maven-wrapper.jar
+
+# JMeter generated output
+jmeter/results*.jtl
+jmeter/html-report/
+jmeter/html-report-*/
+jmeter/*.log

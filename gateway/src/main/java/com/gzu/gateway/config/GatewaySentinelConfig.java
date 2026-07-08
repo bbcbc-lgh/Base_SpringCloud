@@ -7,8 +7,12 @@ import com.alibaba.csp.sentinel.adapter.gateway.common.api.ApiPredicateItem;
 import com.alibaba.csp.sentinel.adapter.gateway.common.api.GatewayApiDefinitionManager;
 import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayFlowRule;
 import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayRuleManager;
+import com.alibaba.csp.sentinel.adapter.gateway.sc.callback.GatewayCallbackManager;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.reactive.function.server.ServerResponse;
 
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
@@ -37,6 +41,14 @@ public class GatewaySentinelConfig {
         definitions.add(apiDefinition("api-orders", "/api/orders/**"));
         definitions.add(apiDefinition("api-messages", "/api/messages/**"));
         GatewayApiDefinitionManager.loadApiDefinitions(definitions);
+    }
+
+    @PostConstruct
+    public void initBlockHandler() {
+        GatewayCallbackManager.setBlockHandler((exchange, throwable) ->
+                ServerResponse.status(HttpStatus.TOO_MANY_REQUESTS)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .bodyValue("{\"code\":429,\"message\":\"blocked by sentinel\",\"data\":null}"));
     }
 
     private GatewayFlowRule routeRule(String routeId) {

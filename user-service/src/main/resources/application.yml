@@ -20,6 +20,7 @@ spring:
     sentinel:
       transport:
         dashboard: ${SENTINEL_DASHBOARD:127.0.0.1:8858}
+        client-ip: ${SENTINEL_CLIENT_IP:127.0.0.1}
         port: 8722
   # SkyWalking Agent配置（通过JVM参数启动时添加）
   # -javaagent:/path/to/skywalking-agent.jar
@@ -29,7 +30,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${USER_DB_NAME:springcloud_user}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
     username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:LGH060212}
+    password: ${DB_PASSWORD:root}
   sql:
     init:
       mode: never

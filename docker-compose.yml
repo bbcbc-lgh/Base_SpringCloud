@@ -128,7 +128,7 @@ services:
       JAVA_OPT_EXT: "-Xms256m -Xmx256m"
     command: >
       sh -c "mkdir -p /home/rocketmq/store/commitlog /home/rocketmq/store/consumequeue /home/rocketmq/store/index &&
-      printf 'brokerClusterName=DefaultCluster\nbrokerName=broker-a\nbrokerId=0\nbrokerIP1=${BROKER_IP:-10.189.170.134}\nnamesrvAddr=rocketmq-namesrv:9876\nautoCreateTopicEnable=true\nlistenPort=10911\nstorePathRootDir=/home/rocketmq/store\nstorePathCommitLog=/home/rocketmq/store/commitlog\nstorePathConsumeQueue=/home/rocketmq/store/consumequeue\nstorePathIndex=/home/rocketmq/store/index\nbrokerRole=ASYNC_MASTER\nflushDiskType=ASYNC_FLUSH\n' > /tmp/broker.conf &&
+      printf 'brokerClusterName=DefaultCluster\nbrokerName=broker-a\nbrokerId=0\nbrokerIP1=${BROKER_IP:-127.0.0.1}\nnamesrvAddr=rocketmq-namesrv:9876\nautoCreateTopicEnable=true\nlistenPort=10911\nstorePathRootDir=/home/rocketmq/store\nstorePathCommitLog=/home/rocketmq/store/commitlog\nstorePathConsumeQueue=/home/rocketmq/store/consumequeue\nstorePathIndex=/home/rocketmq/store/index\nbrokerRole=ASYNC_MASTER\nflushDiskType=ASYNC_FLUSH\n' > /tmp/broker.conf &&
       /home/rocketmq/rocketmq-5.3.1/bin/mqbroker -c /tmp/broker.conf"
     ports:
       - "10909:10909"

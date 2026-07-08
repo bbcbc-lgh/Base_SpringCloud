@@ -29,8 +29,22 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ApiResponse<Void> handleOther(Exception ex) {
+        BusinessException businessException = findBusinessException(ex);
+        if (businessException != null) {
+            return handleBusiness(businessException);
+        }
         log.error("unhandled exception", ex);
         return ApiResponse.fail(ErrorCode.INTERNAL_ERROR, ex.getMessage());
     }
-}
 
+    private BusinessException findBusinessException(Throwable ex) {
+        Throwable current = ex;
+        while (current != null) {
+            if (current instanceof BusinessException businessException) {
+                return businessException;
+            }
+            current = current.getCause();
+        }
+        return null;
+    }
+}

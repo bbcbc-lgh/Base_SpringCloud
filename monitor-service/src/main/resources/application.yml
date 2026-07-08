@@ -20,6 +20,7 @@ spring:
     sentinel:
       transport:
         dashboard: ${SENTINEL_DASHBOARD:127.0.0.1:8858}
+        client-ip: ${SENTINEL_CLIENT_IP:127.0.0.1}
         port: 8718
 
 feign:
